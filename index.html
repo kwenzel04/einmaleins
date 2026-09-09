@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>1×1 Trainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        
+        <!-- HAUPTMENÜ -->
+        <div id="menu-screen" class="screen active">
+            <main class="menu-content">
+                <div class="logo-container">
+                    <h1 class="flashy-logo" data-text="1×1 TRAINER">1×1 TRAINER</h1>
+                    <p class="logo-sub">Mathe Speedrun & Übungen</p>
+                </div>
+
+                <div class="menu-buttons">
+                    <button class="btn btn-secondary" id="start-speedrun-btn">
+                        <strong>20er Speedrun</strong>
+                        <span>20 Fragen auf Zeit (+5s Strafe)</span>
+                    </button>
+
+                    <button class="btn btn-secondary" id="start-rows-btn">
+                        <strong>Reihen-Trainer</strong>
+                        <span>Gezielt bestimmte Reihen üben</span>
+                    </button>
+
+                    <button class="btn btn-secondary" id="start-fill-btn">
+                        <strong>Lücken-Task</strong>
+                        <span>Finde die fehlende Zahl (7 × ? = 56)</span>
+                    </button>
+
+                    <button class="btn btn-secondary" id="start-survival-btn">
+                        <strong>Survival Mode</strong>
+                        <span>3 Leben · 5 Sek. pro Frage · Highscore</span>
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <!-- REIHEN-AUSWAHL BILDSCHIRM -->
+        <div id="row-select-screen" class="screen">
+            <header class="game-header">
+                <button class="btn-icon back-to-menu-btn">✕</button>
+                <div>Reihen wählen</div>
+                <div style="width: 24px;"></div>
+            </header>
+            <main class="menu-content">
+                <p class="select-instruction">Wähle die Reihen aus, die du üben möchtest:</p>
+                <div id="rows-grid"></div>
+                <button class="btn btn-primary" id="confirm-rows-btn">Starten (10 Fragen)</button>
+            </main>
+        </div>
+
+        <!-- SPIEL-BILDSCHIRM -->
+        <div id="game-screen" class="screen">
+            <header class="game-header">
+                <button class="btn-icon back-to-menu-btn">✕</button>
+                <div id="progress">Frage 1 / 20</div>
+                <div id="status-display">0.0s</div>
+            </header>
+
+            <main class="game-content">
+                <div id="question-box">
+                    <span id="question-text">7 × 8</span>
+                </div>
+
+                <div id="answers-grid">
+                    <button class="btn-answer" data-index="0">56</button>
+                    <button class="btn-answer" data-index="1">42</button>
+                    <button class="btn-answer" data-index="2">63</button>
+                    <button class="btn-answer" data-index="3">48</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- ERGEBNIS-BILDSCHIRM -->
+        <div id="result-screen" class="screen">
+            <main class="result-content">
+                <h2 id="result-title">Geschafft! 🎉</h2>
+                <div class="result-box">
+                    <p id="result-label">Deine Zeit:</p>
+                    <div id="final-score">0.0s</div>
+                    <p id="penalty-info" class="penalty-text"></p>
+                </div>
+                <button id="restart-btn" class="btn btn-primary">Nochmal spielen</button>
+                <button class="btn btn-secondary back-to-menu-btn">Hauptmenü</button>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

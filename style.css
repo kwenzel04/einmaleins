@@ -1,0 +1,365 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #121214;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    width: 100vw;
+    height: 100dvh;
+    max-width: 480px;
+    background-color: #1e1e24;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.screen.active {
+    display: flex;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background-color: #2b2b36;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#status-display {
+    color: #ffcc00;
+    font-family: monospace;
+    font-size: 1.3rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Klick-Animation */
+.btn-icon:active {
+    transform: scale(0.85);
+}
+
+/* Haupt-Button (Speedrun): Neon Violett/Pink Gradient mit Glow */
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Secondary Buttons: Dark Glassmorphism mit Neon-Border */
+.btn-secondary {
+    background: linear-gradient(135deg, rgba(43, 43, 54, 0.9) 0%, rgba(30, 30, 36, 0.9) 100%);
+    color: #ffffff;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+#menu-screen .menu-content {
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    background: radial-gradient(circle at top, #2d2b55 0%, #121214 70%);
+    overflow-y: auto;
+}
+
+.logo-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.logo-sub {
+    color: #a1a1aa;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.flashy-logo {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 10px #6366f1, 0 0 20px #6366f1, 0 0 40px #4f46e5;
+    animation: pulseGlow 2s infinite alternate ease-in-out;
+}
+
+.flashy-logo::before,
+.flashy-logo::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 0, 0, 0);
+}
+
+.flashy-logo::before {
+    left: -2px;
+    text-shadow: 2px 0 #ff0055;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.flashy-logo::after {
+    left: 2px;
+    text-shadow: -2px 0 #00ffff;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.menu-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#menu-screen .btn {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#menu-screen .btn:active {
+    transform: scale(0.96) !important;
+}
+
+#menu-screen span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.select-instruction {
+    text-align: center;
+    color: #a1a1aa;
+    margin-bottom: 8px;
+}
+
+#rows-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.row-toggle {
+    background-color: #2b2b36;
+    border: 2px solid #3f3f4e;
+    color: white;
+    padding: 14px 0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.row-toggle.selected {
+    background-color: #4f46e5;
+    border-color: #6366f1;
+}
+
+.game-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+#question-box {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+#answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.btn-answer {
+    background-color: #2b2b36;
+    color: white;
+    border: 2px solid #3f3f4e;
+    border-radius: 16px;
+    padding: 24px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn-answer:active {
+    transform: scale(0.95);
+}
+
+.btn-answer.wrong-disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.flash-correct {
+    animation: flashGreen 0.3s ease;
+}
+
+.flash-wrong {
+    animation: flashRed 0.3s ease;
+}
+
+@keyframes flashGreen {
+    0% { background-color: #064e3b; }
+    100% { background-color: #1e1e24; }
+}
+
+@keyframes flashRed {
+    0% { background-color: #7f1d1d; }
+    100% { background-color: #1e1e24; }
+}
+
+.result-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+    gap: 12px;
+}
+
+.result-box {
+    margin: 20px 0;
+}
+
+#final-score {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #4ade80;
+}
+
+.penalty-text {
+    color: #ef4444;
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #6366f1, 0 0 20px #6366f1;
+    }
+    100% {
+        transform: scale(1.04);
+        text-shadow: 0 0 15px #818cf8, 0 0 30px #818cf8, 0 0 50px #4f46e5;
+    }
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(20px, 9999px, 15px, 0); }
+    20% { clip: rect(40px, 9999px, 50px, 0); }
+    40% { clip: rect(10px, 9999px, 80px, 0); }
+    60% { clip: rect(60px, 9999px, 10px, 0); }
+    80% { clip: rect(30px, 9999px, 30px, 0); }
+    100% { clip: rect(50px, 9999px, 70px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(10px, 9999px, 60px, 0); }
+    25% { clip: rect(70px, 9999px, 10px, 0); }
+    50% { clip: rect(30px, 9999px, 40px, 0); }
+    75% { clip: rect(50px, 9999px, 20px, 0); }
+    100% { clip: rect(20px, 9999px, 80px, 0); }
+}
+
+/* Keyframe für den Schimmer-Effekt */
+@keyframes shimmer {
+    0% {
+        left: -60%;
+    }
+    20% {
+        left: 140%;
+    }
+    100% {
+        left: 140%;
+    }
+}
+
+/* Schimmer-Lichteffekt, der über die Buttons gleitet */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shimmer 4s infinite;
+}
