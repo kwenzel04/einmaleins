@@ -1,0 +1,9 @@
+{
+  "name": "1x1 Trainer",
+  "short_name": "1x1 Trainer",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#2d2b55",
+  "theme_color": "#2d2b55",
+  "orientation": "portrait"
+}

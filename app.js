@@ -55,6 +55,19 @@ answerButtons.forEach(button => {
 function showScreen(screen) {
     [menuScreen, rowSelectScreen, gameScreen, resultScreen].forEach(s => s.classList.remove('active'));
     screen.classList.add('active');
+
+    document.body.setAttribute('data-screen', screen.id);
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+        const colors = {
+            'menu-screen': '#2d2b55',
+            'row-select-screen': '#2b2b36',
+            'game-screen': '#1e1e24',
+            'result-screen': '#1e1e24'
+        };
+        themeColorMeta.setAttribute('content', colors[screen.id] || '#121214');
+    }
 }
 
 function showMenu() {
@@ -198,8 +211,17 @@ function handleSurvivalMistake() {
 
 function triggerFlash(className) {
     gameScreen.classList.remove('flash-correct', 'flash-wrong');
+    document.body.classList.remove('flash-correct', 'flash-wrong');
+
     void gameScreen.offsetWidth; 
+
     gameScreen.classList.add(className);
+    document.body.classList.add(className);
+
+    setTimeout(() => {
+        gameScreen.classList.remove(className);
+        document.body.classList.remove(className);
+    }, 300);
 }
 
 function finishGame() {
