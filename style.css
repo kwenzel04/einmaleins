@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #121214;
+    background-color: #2d2b55; /* Dieselbe Farbe wie der oberste Verlauf-Punkt im Menü */
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -26,6 +26,8 @@ body {
     flex-direction: column;
     position: relative;
     overflow: hidden;
+
+    /* Entferne das padding-top hier, falls es gesetzt war! */
 }
 
 .screen {
@@ -109,8 +111,9 @@ header {
     cursor: pointer;
     transition: transform 0.1s ease;
 }
+
 #menu-screen .menu-content {
-    padding: 32px 24px;
+    padding: calc(32px + env(safe-area-inset-top)) 24px 32px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
