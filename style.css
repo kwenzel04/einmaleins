@@ -113,10 +113,10 @@ header {
 }
 
 #menu-screen .menu-content {
-    padding: calc(32px + env(safe-area-inset-top)) 24px 32px 24px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; /* Zieht den Inhalt nach ganz oben */
     align-items: center;
     flex: 1;
     background: radial-gradient(circle at top, #2d2b55 0%, #121214 70%);
@@ -124,7 +124,8 @@ header {
 }
 
 .logo-container {
-    margin-top: 40px;
+    margin-top: 20px; /* Platziert das Logo sauber im oberen Drittel ohne Freiraum darüber */
+    margin-bottom: auto; /* Schiebt die Buttons automatisch nach unten */
     text-align: center;
 }
 
